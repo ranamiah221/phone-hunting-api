@@ -9,6 +9,14 @@ const displayPhone= phones =>{
     const phoneContainer=document.getElementById("phone-container");
     // clear searching value
     phoneContainer.textContent='';
+    const showAllContainer=document.getElementById("show-all-container")
+    if(phones.length > 12){
+        showAllContainer.classList.remove('hidden');
+    }
+    else{
+        showAllContainer.classList.add('hidden');
+    }
+    phones=phones.slice(0,12);
     phones.forEach(phone => {
         console.log(phone)
         const phoneCard=document.createElement('div')
