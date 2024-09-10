@@ -38,10 +38,21 @@ const displayPhone= phones =>{
         phoneContainer.appendChild(phoneCard)
 
     });
+    toggleLoaderSpinner(false);
 }
 const handleSearch=()=>{
     const searchField=document.getElementById('search-field');
     const searchText=searchField.value;
-    console.log(searchText)
+    toggleLoaderSpinner(true);
     loadPhone(searchText);
+}
+
+const toggleLoaderSpinner=(isLoading)=>{
+    const loaderSpinner=document.getElementById('loader-spinner');
+    if(isLoading){
+        loaderSpinner.classList.remove('hidden');
+    }
+    else{
+        loaderSpinner.classList.add('hidden');
+    }
 }
