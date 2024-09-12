@@ -56,3 +56,6 @@ const toggleLoaderSpinner=(isLoading)=>{
         loaderSpinner.classList.add('hidden');
     }
 }
+const handleShowAll=()=>{
+    console.log("clicked handle show all");
+}
