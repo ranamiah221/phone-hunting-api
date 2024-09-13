@@ -20,27 +20,33 @@ const displayPhone= (phones, isShowAll) =>{
     phones=phones.slice(0,12);
    }
     phones.forEach(phone => {
-        console.log(phone)
         const phoneCard=document.createElement('div')
         phoneCard.classList=`card bg-gray-200 w-full shadow-xl p-5`;
         phoneCard.innerHTML=`
-        <figure>
-                <img
-                 src=${phone.image}
-                 alt="Shoes" />
-         </figure>
-             <div className="card-body">
-                 <h2 className="card-title text-2xl">${phone.phone_name}</h2>
-                 <p>${phone.slug}</p>
-             <div className="card-actions justify-end">
-                <button className="btn btn-primary">Details</button>
-            </div>
-        </div>
+          <figure>
+    <img
+      src=${phone.image}
+      alt="Shoes" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">${phone.phone_name}</h2>
+    <p>${phone.slug}</p>
+    <div class="card-actions justify-center">
+      <button onclick="handleShowDetail('${phone.slug}')" class="btn btn-primary">Show Details</button>
+    </div>
+  </div>
         `;
         phoneContainer.appendChild(phoneCard)
 
     });
     toggleLoaderSpinner(false);
+}
+// show details function...
+const handleShowDetail= async(id)=>{
+   
+    const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
+    const data= await res.json();
+    console.log(data);
 }
 const handleSearch=(isShowAll)=>{
     const searchField=document.getElementById('search-field');
@@ -59,6 +65,5 @@ const toggleLoaderSpinner=(isLoading)=>{
     }
 }
 const handleShowAll=()=>{
-   handleSearch(true);
-    
+   handleSearch(true);  
 }
